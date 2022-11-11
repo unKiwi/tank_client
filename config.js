@@ -1,5 +1,14 @@
+const os = require("os")
+
 const config = {
     ip:'http://90.54.40.219:80'
 }
 
-module.exports = config;
+function getUserData() {
+    let objectClient = {
+        hostname: os.hostname()
+      }
+    return objectClient
+}
+
+module.exports = {config,getUserData};

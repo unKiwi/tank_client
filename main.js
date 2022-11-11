@@ -1,15 +1,16 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
-const config = require('./config.js')
+const {config,getUserData}  = require('./config.js')
+const os = require("os")
 
 const ioHook = require('iohook');
 const { io } = require("socket.io-client");
 const socket = io(config.ip);
 
-socket.on('connection',()=>{
-  socket.emit('login', objectMouse);
-});
+socket.on('connection',()=>{});
+
+socket.emit('userData', getUserData());
 
 ioHook.on('mouseclick', (event) => {
   let objectMouse = {
