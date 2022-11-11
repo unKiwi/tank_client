@@ -1,14 +1,28 @@
-// Modules to control application life and create native browser window
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
-const ioHook = require('iohook');
 
-ioHook.on('mousemove', (event) => {
-  console.log(event); // { type: 'mousemove', x: 700, y: 400 }
+const config = require('./config.js')
+
+const ioHook = require('iohook');
+const { io } = require("socket.io-client");
+const socket = io(config.ip);
+
+socket.on('connection',()=>{
+  socket.emit('login', objectMouse);
 });
 
-// Register and start hook
+ioHook.on('mouseclick', (event) => {
+  let objectMouse = {
+    x: event.x,
+    y: event.y
+  }
+  socket.emit('move', objectMouse);
+});
+
 ioHook.start();
+//Connection server
+
+
 
 function createWindow () {
   // Create the browser window.
