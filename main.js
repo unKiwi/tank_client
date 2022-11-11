@@ -1,50 +1,35 @@
-const {app, BrowserWindow} = require('electron')
+require("./src/iohook")
+
+const { app, BrowserWindow } = require('electron')
 const path = require('path')
 
-const {config,getUserData}  = require('./config.js')
-const os = require("os")
-
-const ioHook = require('iohook');
-const { io } = require("socket.io-client");
-const socket = io(config.ip);
-
-socket.on('connection',()=>{});
-
-socket.emit('userData', getUserData());
-
-ioHook.on('mouseclick', (event) => {
-  let objectMouse = {
-    x: event.x,
-    y: event.y
-  }
-  socket.emit('move', objectMouse);
-});
-
-ioHook.start();
-//Connection server
-
-
-
-function createWindow () {
+function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    // width: 800,
-    // height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     },
     alwaysOnTop: true,
     transparent: true,
     frame: false,
-    autoHideMenuBar: true,
-    icon: null,
+    hasShadow: false,
     skipTaskbar: true,
-    // fullscreen: true,
+    autoHideMenuBar: true,
+    focusable: false,
+    fullscreen: true,
+    simpleFullscreen: true,
+    thickFrame: false,
+    icon: null,
+
+    enableLargerThanScreen: true,
+    movable: false,
   })
 
   mainWindow.setSkipTaskbar(true);
-  mainWindow.setWindowButtonVisibility(true);
+  mainWindow.setWindowButtonVisibility(false);
   mainWindow.setIgnoreMouseEvents(true, { forward: true });
+
+  mainWindow.webContents.openDevTools({mode: "detach"});
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')

@@ -1,7 +1,18 @@
-/**
- * This file is loaded via the <script> tag in the index.html file and will
- * be executed in the renderer process for that window. No Node.js APIs are
- * available in this process because `nodeIntegration` is turned off and
- * `contextIsolation` is turned on. Use the contextBridge API in `preload.js`
- * to expose Node.js functionality from the main process.
- */
+const data = require("./src/data");
+
+data.screen = {
+    width: window.innerWidth,
+    height: window.innerHeight,
+}
+console.log("data")
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+
+// resize canvas
+canvas.width = data.screen.width;
+canvas.height = data.screen.height;
+
+setInterval(() => {
+    console.log(data)
+}, 1000 / 60);

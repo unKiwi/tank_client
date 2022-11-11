@@ -1,6 +1,8 @@
-/* styles.css */
-
-/* Add styles here to customize the appearance of your app */
+html, body, canvas {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 * {
     color: white;
