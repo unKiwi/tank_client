@@ -16,6 +16,7 @@ ioHook.on('mousemove', (event) => {
 
     // calculate angle between tank and mouse
     let angle = utils.getAngleDegrees(repository.screen.width / 2, repository.screen.height / 2, event.x, event.y);
+    repository.cannonDirection = angle;
 });
 
 ioHook.on('keydown', (event) => {
