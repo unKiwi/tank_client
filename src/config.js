@@ -7,7 +7,8 @@ const config = {
 
     objectClient: {
         hostname: os.hostname()
-    }
+    },
+    scaleFactor: 15,
 }
 
 switch (config.runMode) {

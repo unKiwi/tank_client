@@ -9,11 +9,11 @@ ioHook.on('mouseclick', (event) => {
         x: event.x,
         y: event.y
     });
+    console.log(data)
 });
 
 ioHook.on('mousemove', (event) => {
     if (!data.serverState.tanks) return;
-    // console.log(data)
 
     // calculate angle between tank and mouse
     // let myTank = data.serverState.tanks[data.id];

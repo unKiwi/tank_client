@@ -7,6 +7,8 @@ function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
     },
     alwaysOnTop: true,
@@ -29,10 +31,14 @@ function createWindow() {
   mainWindow.setWindowButtonVisibility(false);
   mainWindow.setIgnoreMouseEvents(true, { forward: true });
 
-  mainWindow.webContents.openDevTools({mode: "detach"});
+  mainWindow.webContents.openDevTools({ mode: "detach" });
 
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
+
+  mainWindow.webContents.executeJavaScript(`console.log(1)`, function (result) {
+    console.log(result)
+  })
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
