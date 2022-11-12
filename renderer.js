@@ -1,19 +1,17 @@
-const data = require("./src/data");
-
-console.log(data)
-
-data.screen = {
+const screen = {
     width: window.innerWidth,
     height: window.innerHeight,
 }
+
+window.electronAPI.screen(screen);
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 // resize canvas
-canvas.width = data.screen.width;
-canvas.height = data.screen.height;
+canvas.width = screen.width;
+canvas.height = screen.height;
 
-setInterval(() => {
-    
-}, 1000 / 60);
+window.electronAPI.handleRedraw((event, value) => {
+    console.log(event, value)
+});

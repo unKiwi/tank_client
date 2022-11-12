@@ -1,13 +1,14 @@
 const os = require("os")
 
 const config = {
-    runMode: "dev",
-    // runMode: "test",
+    // runMode: "dev",
+    runMode: "test",
     // runMode: "prod",
 
     objectClient: {
         hostname: os.hostname()
     },
+    frameRate: 60,
     scaleFactor: 15,
 }
 
@@ -17,7 +18,7 @@ switch (config.runMode) {
         break;
 
     case "test":
-        config.ip = "http://tank.nwe.li:80";
+        config.ip = "http://192.168.1.11:80";
         break;
 
     case "prod":
