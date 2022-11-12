@@ -15,7 +15,6 @@ ioHook.on('mousemove', (event) => {
     if (!repository.serverState.tanks) return;
 
     // calculate angle between tank and mouse
-    // let myTank = repository.serverState.tanks[repository.id];
     let angle = utils.getAngleDegrees(repository.screen.width / 2, repository.screen.height / 2, event.x, event.y);
 });
 
