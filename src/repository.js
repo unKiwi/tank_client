@@ -1,4 +1,10 @@
 module.exports = {
-    clientState: {},
-    serverState: {},
+    id: null,
+    screen: {
+        width: null,
+        height: null,
+    },
+    serverState: {
+        tanks: {},
+    },
 }

@@ -1,5 +1,6 @@
 const config = require("./src/config");
 const drawPlayer = require("./src/drawing/player");
+const drawMap = require("./src/drawing/map");
 
 const { ipcRenderer } = require('electron');
 
@@ -10,8 +11,13 @@ const screen = {
 screen.unit = (screen.width + screen.height) / 2 / config.scaleFactor;
 
 ipcRenderer.on('redraw', (event, repository) => {
+    // erase
     ctx.clearRect(0, 0, screen.width, screen.height);
 
+    // map
+    drawMap(ctx, repository);
+
+    // tanks
     let tanks = repository.serverState.tanks;
     let myTank = tanks[repository.id];
 

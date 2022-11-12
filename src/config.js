@@ -18,7 +18,7 @@ switch (config.runMode) {
         break;
 
     case "test":
-        config.ip = "http://192.168.1.11:80";
+        config.ip = "http://tank.nwe.li:80";
         break;
 
     case "prod":

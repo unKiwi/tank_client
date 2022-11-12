@@ -10,7 +10,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true,
-      // contextIsolation: true,
+      contextIsolation: false,
       preload: path.join(__dirname, 'preload.js')
     },
     alwaysOnTop: true,
