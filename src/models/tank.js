@@ -13,10 +13,10 @@ module.exports = {
     },
     cannon: {
         length: 0.4,
-        width: 0.2,
+        width: 0.1,
     },
     silencieux: {
-        length: 0.2,
-        width: 0.3,
+        length: 0.15,
+        width: 0.2,
     },
 }

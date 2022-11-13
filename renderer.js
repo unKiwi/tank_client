@@ -20,6 +20,7 @@ canvas.width = screen.width;
 canvas.height = screen.height;
 
 ipcRenderer.on('redraw', (event, repository) => {
+    console.log("redraw")
     // erase
     ctx.clearRect(0, 0, screen.width, screen.height);
 

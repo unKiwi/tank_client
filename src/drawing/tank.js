@@ -23,6 +23,7 @@ module.exports = (ctx, screen, myTank, tank) => {
     ctx.fillRect(-lengthX / 2, -lengthY / 2, lengthX, lengthY);
 
     ctx.rotate(-rotate);
+    console.log(tank.cannonDirection)
     rotate = tank.cannonDirection * Math.PI / 180;
     ctx.rotate(rotate);
 
@@ -36,7 +37,13 @@ module.exports = (ctx, screen, myTank, tank) => {
     lengthX = tankShape.cannon.length * screen.unit;
     lengthY = tankShape.cannon.width * screen.unit;
     ctx.fillStyle = "rgb(55, 56, 62)";
-    ctx.fillRect(-lengthX / 2 + tankShape.head.length * screen.unit, -lengthY / 2, lengthX, lengthY);
+    ctx.fillRect(tankShape.head.length / 2 * screen.unit, -lengthY / 2, lengthX, lengthY);
+
+    // silencieux
+    lengthX = tankShape.silencieux.length * screen.unit;
+    lengthY = tankShape.silencieux.width * screen.unit;
+    ctx.fillStyle = `rgb(${tank.color.r + config.colorContrast}, ${tank.color.g + config.colorContrast}, ${tank.color.b + config.colorContrast})`;
+    ctx.fillRect((tankShape.head.length / 2 + tankShape.cannon.length) * screen.unit, -lengthY / 2, lengthX, lengthY);
 
     ctx.translate(-translateX, -translateY);
     ctx.rotate(-rotate);
