@@ -1,5 +1,5 @@
 const config = require("./src/config");
-const drawPlayer = require("./src/drawing/player");
+const drawTank = require("./src/drawing/tank");
 const drawMap = require("./src/drawing/map");
 
 const { ipcRenderer } = require('electron');
@@ -9,6 +9,15 @@ const screen = {
     height: window.innerHeight,
 }
 screen.unit = (screen.width + screen.height) / 2 / config.scaleFactor;
+
+ipcRenderer.send('screen', screen);
+
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+
+// resize canvas
+canvas.width = screen.width;
+canvas.height = screen.height;
 
 ipcRenderer.on('redraw', (event, repository) => {
     // erase
@@ -23,15 +32,6 @@ ipcRenderer.on('redraw', (event, repository) => {
 
     Object.keys(tanks).forEach(key => {
         let tank = tanks[key];
-        drawPlayer(ctx, screen.width / 2 + (tank.x - myTank.x) * screen.unit, screen.height / 2 + (tank.y - myTank.y) * screen.unit);
+        drawTank(ctx, repository.screen, myTank, tank);
     });
 });
-
-ipcRenderer.send('screen', screen);
-
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
-
-// resize canvas
-canvas.width = screen.width;
-canvas.height = screen.height;

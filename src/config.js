@@ -10,6 +10,7 @@ const config = {
     },
     frameRate: 60,
     scaleFactor: 15,
+    colorContrast: 20,
 }
 
 switch (config.runMode) {

@@ -4,6 +4,10 @@ module.exports = {
         width: null,
         height: null,
     },
+    clientState: {
+        movingDirection: null,
+        cannonDirection: null,
+    },
     serverState: {
         tanks: {},
     },

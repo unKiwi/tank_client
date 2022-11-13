@@ -42,6 +42,7 @@ function createWindow() {
   mainWindow.webContents.openDevTools({ mode: "detach" });
 
   setInterval(() => {
+    console.log(repository)
     mainWindow.webContents.send('redraw', repository);
   }, 1000 / config.frameRate);
 }
