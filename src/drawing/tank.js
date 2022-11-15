@@ -2,7 +2,6 @@ const config = require("../config");
 const tankShape = require("../models/tank");
 
 module.exports = (ctx, repository, tank) => {
-    console.log(tank.cannonDirection)
     let { screen, myTankPos } = repository;
 
     ctx.save();

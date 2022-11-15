@@ -15,4 +15,8 @@ socket.on('state', state => {
     repository.update(state);
 });
 
+setInterval(()=>{
+    socket.emit('state',repository.clientState)
+})
+
 module.exports = socket;

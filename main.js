@@ -30,7 +30,7 @@ function createWindow() {
   });
 
   mainWindow.setSkipTaskbar(true);
-  mainWindow.setWindowButtonVisibility(false);
+  //mainWindow.setWindowButtonVisibility(false);
   mainWindow.setIgnoreMouseEvents(true, { forward: true });
 
   mainWindow.webContents.openDevTools({ mode: "detach" });
