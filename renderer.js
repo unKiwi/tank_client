@@ -20,7 +20,8 @@ canvas.width = screen.width;
 canvas.height = screen.height;
 
 ipcRenderer.on('redraw', (event, repository) => {
-    console.log("redraw")
+    repository = JSON.parse(repository);
+
     // erase
     ctx.clearRect(0, 0, screen.width, screen.height);
 
@@ -28,11 +29,7 @@ ipcRenderer.on('redraw', (event, repository) => {
     drawMap(ctx, repository);
 
     // tanks
-    let tanks = repository.serverState.tanks;
-    let myTank = tanks[repository.id];
-
-    Object.keys(tanks).forEach(key => {
-        let tank = tanks[key];
-        drawTank(ctx, repository.screen, myTank, tank);
+    repository.tanks.forEach(tank => {
+        drawTank(ctx, repository, tank);
     });
 });

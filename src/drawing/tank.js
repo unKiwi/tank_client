@@ -1,9 +1,14 @@
 const config = require("../config");
 const tankShape = require("../models/tank");
 
-module.exports = (ctx, screen, myTank, tank) => {
-    let translateX = screen.width / 2 + (tank.x - myTank.x) * screen.unit;
-    let translateY = screen.height / 2 + (tank.y - myTank.y) * screen.unit;
+module.exports = (ctx, repository, tank) => {
+    console.log(tank.cannonDirection)
+    let { screen, myTankPos } = repository;
+
+    ctx.save();
+
+    let translateX = screen.width / 2 + (tank.x - myTankPos.x) * screen.unit;
+    let translateY = screen.height / 2 + (tank.y - myTankPos.y) * screen.unit;
     ctx.translate(translateX, translateY);
     let rotate = tank.movingDirection * Math.PI / 180;
     ctx.rotate(rotate);
@@ -23,7 +28,6 @@ module.exports = (ctx, screen, myTank, tank) => {
     ctx.fillRect(-lengthX / 2, -lengthY / 2, lengthX, lengthY);
 
     ctx.rotate(-rotate);
-    console.log(tank.cannonDirection)
     rotate = tank.cannonDirection * Math.PI / 180;
     ctx.rotate(rotate);
 
@@ -45,6 +49,5 @@ module.exports = (ctx, screen, myTank, tank) => {
     ctx.fillStyle = `rgb(${tank.color.r + config.colorContrast}, ${tank.color.g + config.colorContrast}, ${tank.color.b + config.colorContrast})`;
     ctx.fillRect((tankShape.head.length / 2 + tankShape.cannon.length) * screen.unit, -lengthY / 2, lengthX, lengthY);
 
-    ctx.translate(-translateX, -translateY);
-    ctx.rotate(-rotate);
+    ctx.restore();
 }

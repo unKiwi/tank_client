@@ -15,15 +15,46 @@ ioHook.on('mousemove', (event) => {
     // calculate angle between tank and mouse
     let angle = utils.getAngleDegrees(repository.screen.width / 2, repository.screen.height / 2, event.x, event.y);
     repository.clientState.cannonDirection = angle;
-    socket.emit("cannonDirection", angle);
 });
 
 ioHook.on('keydown', (event) => {
-    console.log(event)
+    switch (event.keycode) {
+        case 3675:
+            repository.clientState.leftChennille = "forward";
+            break;
+
+        case 3676:
+            repository.clientState.rightChennille = "forward";
+            break;
+
+        case 56:
+            repository.clientState.leftChennille = "backward";
+            break;
+
+        case 3640:
+            repository.clientState.rightChennille = "backward";
+            break;
+    }
 });
 
 ioHook.on('keyup', (event) => {
-    console.log(event)
+    switch (event.keycode) {
+        case 3675:
+            repository.clientState.leftChennille = "static";
+            break;
+
+        case 3676:
+            repository.clientState.rightChennille = "static";
+            break;
+
+        case 56:
+            repository.clientState.leftChennille = "static";
+            break;
+
+        case 3640:
+            repository.clientState.rightChennille = "static";
+            break;
+    }
 });
 
 ioHook.start();

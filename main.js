@@ -42,12 +42,9 @@ function createWindow() {
   mainWindow.webContents.openDevTools({ mode: "detach" });
 
   setInterval(() => {
-    mainWindow.webContents.send('redraw', repository);
+    repository.calculateIntermediateState();
+    mainWindow.webContents.send('redraw', JSON.stringify(repository));
   }, 1000 / config.frameRate);
-
-  // setTimeout(()=>{
-  //   mainWindow.webContents.send('redraw', repository);
-  // },10000)
 }
 
 // This method will be called when Electron has finished

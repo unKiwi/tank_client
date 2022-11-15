@@ -12,7 +12,7 @@ socket.on('id', id => {
 });
 
 socket.on('state', state => {
-    repository.serverState = state;
+    repository.update(state);
 });
 
 module.exports = socket;
