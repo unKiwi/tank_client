@@ -4,6 +4,7 @@ const repository = {
         width: undefined,
         height: undefined,
         unit: undefined,
+        scaleFactor: undefined, 
     },
     clientState: {
         leftChennille: "static",

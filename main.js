@@ -2,7 +2,7 @@ require("./src/iohook");
 const repository = require("./src/repository");
 const config = require("./src/config");
 
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('path');
 
 function createWindow() {
@@ -52,7 +52,11 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   ipcMain.on('screen', (_event, value) => {
-    repository.screen = value;
+    const scale = screen.getPrimaryDisplay().scaleFactor;
+    console.log(value.height * scale)
+    repository.screen.height = value.height * scale;
+    repository.screen.width = value.width * scale;
+    repository.screen.unit = (repository.screen.width + repository.screen.height) / 2 / config.scaleFactor;
   });
 
   createWindow();

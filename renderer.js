@@ -8,7 +8,6 @@ const screen = {
     width: window.innerWidth,
     height: window.innerHeight,
 }
-screen.unit = (screen.width + screen.height) / 2 / config.scaleFactor;
 
 ipcRenderer.send('screen', screen);
 
